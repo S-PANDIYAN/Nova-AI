@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Nova AI Assistant</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        // Debug: Check if CSS is loading
+        window.addEventListener('load', function() {
+            console.log('Page loaded');
+            const styles = getComputedStyle(document.body);
+            console.log('Body background:', styles.background);
+            console.log('CSS loaded successfully');
+        });
+    </script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <div class="nova-logo">
+                        <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <defs>
+                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#667eea"/>
+                                    <stop offset="100%" stop-color="#764ba2"/>
+                                </linearGradient>
+                            </defs>
+                            <circle cx="32" cy="32" r="30" fill="url(#logoGradient)"/>
+                            <path d="M20 20h24c2.2 0 4 1.8 4 4v12c0 2.2-1.8 4-4 4H28l-6 6v-6h-2c-2.2 0-4-1.8-4-4V24c0-2.2 1.8-4 4-4z"
+                                stroke="white" stroke-width="2" fill="none"/>
+                            <circle cx="24" cy="28" r="2" fill="white"/>
+                            <circle cx="32" cy="28" r="2" fill="white"/>
+                            <circle cx="40" cy="28" r="2" fill="white"/>
+                        </svg>
+                    </div>
+                    <h1 class="app-title">Nova AI</h1>
+                </div>
+                <button class="new-chat-btn" id="newChatBtn">
+                    <i class="fas fa-plus"></i>
+                    <span>New Chat</span>
+                </button>
+            </div>
+            
+            <div class="chat-history">
+                <div class="history-section">
+                    <h3>Today</h3>
+                    <div class="history-item active">
+                        <i class="fas fa-message"></i>
+                        <span>Welcome to Nova AI</span>
+                        <button class="delete-chat"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="username">User</span>
+                        <span class="plan">Free Plan</span>
+                    </div>
+                </div>
+                <button class="settings-btn">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="main-content">
+            <div class="chat-header">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="model-selector">
+                    <span>Nova AI</span>
+                    <div class="status-indicator online"></div>
+                </div>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Welcome Message -->
+                    <div class="message-group">
+                        <div class="message assistant">
+                            <div class="message-avatar">
+                                <div class="ai-avatar">
+                                    <svg width="24" height="24" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                        <defs>
+                                            <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" stop-color="#667eea"/>
+                                                <stop offset="100%" stop-color="#764ba2"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <circle cx="32" cy="32" r="30" fill="url(#avatarGradient)"/>
+                                        <path d="M20 20h24c2.2 0 4 1.8 4 4v12c0 2.2-1.8 4-4 4H28l-6 6v-6h-2c-2.2 0-4-1.8-4-4V24c0-2.2 1.8-4 4-4z"
+                                            stroke="white" stroke-width="2" fill="none"/>
+                                        <circle cx="24" cy="28" r="2" fill="white"/>
+                                        <circle cx="32" cy="28" r="2" fill="white"/>
+                                        <circle cx="40" cy="28" r="2" fill="white"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="message-content">
+                                <div class="message-text">
+                                    Hello! I'm Nova AI, your intelligent assistant. How can I help you today?
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-area">
+                    <form class="chat-form" id="chatForm">
+                        <div class="input-container">
+                            <button type="button" class="attachment-btn">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                            <textarea 
+                                id="chatInput"
+                                rows="1"
+                                placeholder="Message Nova AI..."
+                                maxlength="2000"
+                            ></textarea>
+                            <button type="button" class="voice-btn">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button type="submit" class="send-button" id="sendButton">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="input-footer">
+                        <span class="disclaimer">Nova AI can make mistakes. Consider verifying important information.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+    <script>
+        // Debug: Check if JavaScript is loading
+        console.log('JavaScript file loaded');
+    </script>
+</body>
+</html>
